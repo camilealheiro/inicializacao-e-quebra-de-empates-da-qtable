@@ -1,1 +1,1 @@
-# inicializacao-e-quebra-de-empates-da-qtable
+# Inicialização e Quebra de Empates da Q-table
