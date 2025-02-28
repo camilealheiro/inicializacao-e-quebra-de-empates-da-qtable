@@ -172,6 +172,36 @@ df_norm = pd.DataFrame(results_lake)
 ```
 
 ## Análise dos Resultados
-Abaixo seguem os gráficos gerados pelos resultados dos experimentos. A imagem 1 representa a média dos desempenhos médios dos últimos 100 episódios de diferentes tipos de inicialização, considerando todos os ambientes e algoritmos. A imagem 2 segue a mesma proposta, porém avaliando a quebra de empate.   
-IMAGEM   
+Abaixo seguem os gráficos gerados pelos resultados dos experimentos. A imagem 1 representa a média dos desempenhos médios dos últimos 100 episódios de diferentes tipos de inicialização, considerando todos os ambientes e algoritmos. A imagem 2 segue a mesma proposta, porém avaliando a quebra de empate. Nota-se que, na Imagem 1, a inicialização por **small_range** obteve o maior desempenho médio em relação às outras. Enquanto isso, na imagem 2, a quebra de empate por escolha aleatória se destacou em relação à escolha por menor indíce.   
 
+![image](https://github.com/user-attachments/assets/2760fc6c-225b-4161-8fa1-04b900276d7c)
+
+![image](https://github.com/user-attachments/assets/8e21a040-3a51-4d11-8c5d-7d32fee1a5a5)
+
+## Resultados em Ambientes Determinísticos
+![image](https://github.com/user-attachments/assets/7575156e-5c81-4c06-a161-cb598668917f)
+
+A imagem acimma mostra a performance das estratégias "Greedy" e "Random" no ambiente RaceTrack-v0 ao longo do tempo. Ambas as estratégias mostram um crescimento ao longo do tempo, indicando aprendizado ou melhora de desempenho. Além disso, o desempenho varia ao longo do tempo, mas a estratégia "Greedy" parece ter oscilações mais fortes. No final, ambas as estratégias têm desempenhos semelhantes, mas "Greedy" ainda apresenta picos mais altos.   
+
+![image](https://github.com/user-attachments/assets/6e303263-718b-484d-9af6-7e21c42ede0d)
+
+O gráfico da imagem 4 mostra os resultados médios de desempenho no ambiente RaceTrack-v0, comparando diferentes tipos de inicialização (Init Type). Todas as configurações mostram uma tendência de crescimento, indicando que o agente está aprendendo e melhorando seu desempenho. Após cerca de 1000 iterações, os valores médios estabilizam próximos de 1.0, sugerindo um aprendizado bem-sucedido. No início, há bastante variação entre os métodos de inicialização. Em relação às estratégias, a estratégia small_range tem um desempenho ligeiramente inferior no começo, mas depois acompanha as outras. A estratégia zero e small_positive têm um crescimento mais suave e parecem mais estáveis no início. Após 2000 iterações, todas as estratégias estão muito próximas, oscilando ligeiramente, mas mantendo valores médios altos. O que pode indicar que a escolha da inicialização não tem um grande impacto no desempenho final, apenas na fase inicial do aprendizado.   
+
+Conclui-se, portanto, na imagem 3, ambas as estratégias mostram um crescimento ao longo do tempo, indicando aprendizado ou melhora de desempenho. O desempenho varia ao longo do tempo, mas a estratégia "Greedy" parece ter oscilações mais fortes. No final, ambas as estratégias têm desempenhos semelhantes, mas "Greedy" ainda apresenta picos mais altos. Na imagem 4, no longo prazo, todas as inicializações levam a resultados semelhantes. No curto prazo, algumas diferenças aparecem, com a inicialização zero e small_positive tendo um início um pouco mais estável. O método **small_range** teve um desempenho um pouco mais instável no começo, mas convergiu bem.
+
+## Resultados em Ambientes Estocásticos
+![image](https://github.com/user-attachments/assets/bc4c47c4-0c15-44d1-b8a8-109e4dada0e8)
+
+A imagem 5 compara o desempenho das estratégias "Greedy" e "Random" no ambiente FrozenLake-v1 ao longo do tempo. Ambas as estratégias apresentam resultados baixos na maior parte do tempo, o que sugere que o ambiente FrozenLake-v1 é batante desafiador. Pode-se explicar, pois o FrozenLake é um ambiente estocástico, onde o agente pode escorregar e falhar mesmo quando toma decisões ótimas. A estratégia Random tem variações bruscas, com picos repentinos e depois retornando a zero. Isso indica que, ocasionalmente, o agente consegue um bom desempenho por sorte, mas a estratégia não é consistente. A estratégia Greedy apresenta oscilações menores, mas também tem dificuldades para alcançar um desempenho alto. Isso pode indicar que a política greedy não está aprendendo bem ou que o ambiente é muito punitivo. Diferente do gráfico do RaceTrack-v0, nenhuma estratégia claramente supera a outra de forma consistente.
+
+![image](https://github.com/user-attachments/assets/7d224979-7472-4280-b9fd-7b0eab75c521)
+
+O gráfico acima exibe os resultados médios de desempenho no ambiente FrozenLake-v1, comparando diferentes estratégias de inicialização (Init Type). A maior parte dos valores permanece próxima de zero, indicando que o agente tem dificuldades para aprender a lidar com o ambiente. Isso faz sentido, pois o FrozenLake é um ambiente estocástico com alto risco de falha. As três estratégias mostram poucos picos isolados de desempenho ao longo do tempo. Isso pode surgerir que ocasionalmente o agente tem sucesso, mas não de forma consistente. A estratégia small_positive tem um pico logo no início, mas depois não se destaca. A estratégia zero apresenta alguns picos ao longo do tempo, mas espaçados. A estratégia small_range também tem picos, mas segue um padrão semelhante às outras. Diferente do gráfico do RaceTrack-v0, aqui não há uma tendência de crescimento. O agente não está conseguindo aprender uma política eficiente.   
+
+Conclui-se, portanto, que na imagem 5, a estratégia Random tem grande variação, com momentos de sucesso puro por sorte, mas não é confiável. A estratégia Greedy tem um desempenho um pouco mais estável, mas ainda não consegue dominar o ambiente. Já na imagem 6, o ambiente FrozenLake-v1 é muito punitivo, e o agente não está conseguindo aprender de forma consistente. A inicialização não parece ter um impacto significativo, já que todas as estratégias mostram resultados semelhantes.
+
+## Conclusões
+Os gráficos demonstram que o desempenho do RL depende fortemente do ambiente onde ele está sendo treinado. No RaceTrack-v0, os agentes conseguem aprender gradativamente, enquanto no FrozenLake-v1, o aprendizado é esporádico e inconsistente. Isso ocorre porque o RaceTrack-v0 tem uma dinâmica mais determinística, permitindo que o agente aprenda com mais confiança, já o FrozenLake-v1 é estocástico e punitivo, dificultando a estabilização do aprendizado. Os experimentos mostraram diferentes formas de inicializar os valores do agente (zero, small_positive, small_range). No RaceTrack-v0, essas diferenças foram relevantes no início, mas todas convergiram para bons resultados. Já no FrozenLake-v1, os métodos de inicialização não tiveram impacto significativo.   
+
+Isso mostra que a inicialização pode afetar a velocidade do aprendizado, mas seu impacto tende a ser reduzido conforme o agente explora o ambiente e em ambientes difíceis (como FrozenLake), mesmo uma boa inicialização não garante um aprendizado eficiente. Os gráficos de FrozenLake-v1 mostram um aprendizado altamente inconsistente, com picos ocasionais de desempenho, mas sem convergência clara. Isso destaca um dos maiores problemas do RL: não há garantias de que o agente aprenderá uma política ótima.   
+Portanto, os agentes treinados em um ambiente podem não generalizar bem para outro. O RL geralmente requer ajustes específicos para cada cenário, o que limita sua aplicabilidade em problemas do mundo real, onde mudanças no ambiente são comuns. E. embora o RL tenha demonstrado resultados impressionantes em jogos e robótica, ele não é uma solução garantida para qualquer problema. O ambiente, a inicialização e a estratégia de exploração desempenham um papel crucial na efetividade do aprendizado.
