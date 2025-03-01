@@ -76,7 +76,7 @@ if init_type == "zero":
 ```
 
 Desenvolvemos algumas funções para que o objetivo fosse atingido. Iniciamos com ```run_experiment``` que escolhe e executa o algoritmo (Monte Carlo ou Q-Learning), executa um experimento com um ambiente específico (FrozenLake ou RaceTrack), e testa as duas formas de desempate no ε-greedy. Além do algoritmo e ambiente, essa função também chama o tipo de inicialização entre "zero", "small positive", "small range", determina o número de episódios que serão rodados por ambiente e determina lr, gamma e epsilon, onde:
-- lr é a taxa de aprendizado e através dela é controlado o quanto a Q-tabel é atualizada a cada iteração.
+- lr é a taxa de aprendizado e através dela é controlado o quanto a Q-table é atualizada a cada iteração.
 - gamma é o fator de desconto que define a importância das recompensas futuras.
 - epsilon é a taxa de exploração que controla a chance de o agente explorar novas ações aleatoriamente em vez de seguir a melhor ação conhecida.
 
